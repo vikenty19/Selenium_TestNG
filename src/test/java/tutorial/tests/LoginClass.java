@@ -14,7 +14,12 @@ import org.testng.annotations.Test;
 import java.time.Duration;
 
 public class LoginClass extends BasePage {
-    String URL = "http://tutorialsninja.com/demo/";
+   By accountBtn = By.xpath("//h2[text()='My Account']");
+   By emailBtn =By.cssSelector("#input-email");
+   By loginBtn = By.linkText("Login");
+   By passwordBtn = By.cssSelector("#input-password");
+   By accountEnterBtn= By.cssSelector(".fa-user");
+   By submitBtn = By.xpath("//input[@type ='submit']");
 
     @Test(priority = 2)
     public void loginSuccess() {
@@ -26,22 +31,22 @@ public class LoginClass extends BasePage {
         driver.get(URL);
 
 
-        driver.findElement(By.cssSelector(".fa-user")).click();
+        driver.findElement(accountEnterBtn).click();
         WebElement login = wait.until(ExpectedConditions
-                .elementToBeClickable(By.linkText("Login")));
+                .elementToBeClickable(loginBtn));
         login.click();
         WebElement email = wait.until(ExpectedConditions
-                .elementToBeClickable(By.cssSelector("#input-email")));
+                .elementToBeClickable(emailBtn));
         email.clear();
         email.sendKeys("vv@mail.ru");
-        driver.findElement(By.cssSelector("#input-password")).sendKeys("megadelta");
-        driver.findElement(By.xpath("//input[@type ='submit']")).click();
-        WebElement account = wait.until(ExpectedConditions
-                .elementToBeClickable(By.xpath("//h2[text()='My Account']")));
+        driver.findElement(passwordBtn).sendKeys("megadelta");
+        driver.findElement(submitBtn).click();
+        WebElement account = waitUntilVisible(accountBtn);
         Assert.assertTrue((account.isDisplayed()));
         driver.quit();
 
     }
+
 @Test(priority = 1,invocationCount = 3)
   public void loginNegative(){
         WebDriverManager.chromedriver().setup();
