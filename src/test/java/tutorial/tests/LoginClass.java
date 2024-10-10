@@ -32,11 +32,9 @@ public class LoginClass extends BasePage {
 
 
         driver.findElement(accountEnterBtn).click();
-        WebElement login = wait.until(ExpectedConditions
-                .elementToBeClickable(loginBtn));
+        WebElement login =waitUntilClickable(loginBtn);
         login.click();
-        WebElement email = wait.until(ExpectedConditions
-                .elementToBeClickable(emailBtn));
+        WebElement email=waitUntilClickable(emailBtn);
         email.clear();
         email.sendKeys("vv@mail.ru");
         driver.findElement(passwordBtn).sendKeys("megadelta");

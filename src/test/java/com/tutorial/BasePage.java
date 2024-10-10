@@ -22,5 +22,10 @@ public String generateLogin() {
     return element;
 
   }
-  
+  public WebElement waitUntilClickable(By locator){
+    WebElement elementClick= wait.until(ExpectedConditions
+            .elementToBeClickable(locator));
+    return elementClick;
+
+  }
 }
