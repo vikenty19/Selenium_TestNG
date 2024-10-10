@@ -36,8 +36,7 @@ public class LoginClass extends BasePage {
         email.sendKeys("vv@mail.ru");
         driver.findElement(By.cssSelector("#input-password")).sendKeys("megadelta");
         driver.findElement(By.xpath("//input[@type ='submit']")).click();
-        WebElement account = wait.until(ExpectedConditions
-                .visibilityOfElementLocated(By.xpath("//h2[text() ='My Account']")));
+      
         Assert.assertTrue((account.isDisplayed()));
         driver.quit();
 
