@@ -27,12 +27,10 @@ public class LoginClass extends BasePage {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
         driver.get(URL);
-
-
         driver.findElement(accountEnterBtn).click();
         WebElement login =waitUntilClickable(loginBtn);
+        login.clear();
         login.click();
         WebElement email=waitUntilClickable(emailBtn);
         email.clear();
