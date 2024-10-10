@@ -15,11 +15,13 @@ import java.time.Duration;
 
 public class LoginClass extends BasePage {
    By accountBtn = By.xpath("//h2[text()='My Account']");
-   By emailBtn =By.cssSelector("#input-email");
+
    By loginBtn = By.linkText("Login");
-   By passwordBtn = By.cssSelector("#input-password");
+
    By accountEnterBtn= By.cssSelector(".fa-user");
    By submitBtn = By.xpath("//input[@type ='submit']");
+   String email = "vv@mail.ru";
+   String password = "megadelta";
 
     @Test(priority = 2)
     public void loginSuccess() {
@@ -30,12 +32,9 @@ public class LoginClass extends BasePage {
         driver.get(URL);
         driver.findElement(accountEnterBtn).click();
         WebElement login =waitUntilClickable(loginBtn);
-        login.clear();
         login.click();
-        WebElement email=waitUntilClickable(emailBtn);
-        email.clear();
-        email.sendKeys("vv@mail.ru");
-        driver.findElement(passwordBtn).sendKeys("megadelta");
+        enterEmail(email);
+        enterPassword(password);
         driver.findElement(submitBtn).click();
         WebElement account = waitUntilVisible(accountBtn);
         Assert.assertTrue((account.isDisplayed()));
@@ -43,7 +42,8 @@ public class LoginClass extends BasePage {
 
     }
 
-@Test(priority = 1,invocationCount = 3)
+
+    @Test(priority = 1,invocationCount = 3)
   public void loginNegative(){
         WebDriverManager.chromedriver().setup();
       driver = new ChromeDriver();

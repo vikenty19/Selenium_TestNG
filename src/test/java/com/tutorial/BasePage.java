@@ -11,6 +11,8 @@ public class BasePage {
   protected  WebDriver driver;
   protected WebDriverWait wait;
   protected String URL = "http://tutorialsninja.com/demo/";
+  By passwordBtn = By.cssSelector("#input-password");
+  By emailBtn =By.cssSelector("#input-email");
 public String generateLogin() {
   Faker faker = new Faker();
   String loginNegative = faker.animal().name();
@@ -28,4 +30,14 @@ public String generateLogin() {
     return elementClick;
 
   }
+  public void enterPassword(String passWord) {
+    driver.findElement(passwordBtn).sendKeys(passWord);
+  }
+
+  public void enterEmail(String email) {
+    WebElement emailLocator=waitUntilClickable(emailBtn);
+    emailLocator.clear();
+    emailLocator.sendKeys(email);
+  }
+
 }
