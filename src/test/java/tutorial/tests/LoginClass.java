@@ -16,7 +16,7 @@ import java.time.Duration;
 public class LoginClass extends BasePage {
     String URL = "http://tutorialsninja.com/demo/";
 
-    @Test
+    @Test(priority = 2)
     public void loginSuccess() {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
@@ -42,7 +42,7 @@ public class LoginClass extends BasePage {
         driver.quit();
 
     }
-@Test
+@Test(priority = 1,invocationCount = 3)
   public void loginNegative(){
         WebDriverManager.chromedriver().setup();
       driver = new ChromeDriver();
@@ -58,7 +58,9 @@ public class LoginClass extends BasePage {
               .elementToBeClickable(By.cssSelector("#input-email")));
       email.clear();
       String invalidLogin = generateLogin();
-      email.sendKeys(invalidLogin);
+
+      email.sendKeys(invalidLogin + "@gmail.com");
+    System.out.println(invalidLogin +"@gmail.com");
       driver.findElement(By.cssSelector("#input-password")).sendKeys("12345");
       driver.findElement(By.xpath("//input[@type ='submit']")).click();
       WebElement alert = wait.until(ExpectedConditions
