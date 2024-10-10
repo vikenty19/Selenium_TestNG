@@ -42,7 +42,7 @@ public class LoginClass extends BasePage {
         driver.quit();
 
     }
-
+@Test
   public void loginNegative(){
         WebDriverManager.chromedriver().setup();
       driver = new ChromeDriver();
@@ -61,9 +61,9 @@ public class LoginClass extends BasePage {
       email.sendKeys(invalidLogin);
       driver.findElement(By.cssSelector("#input-password")).sendKeys("12345");
       driver.findElement(By.xpath("//input[@type ='submit']")).click();
-      WebElement account = wait.until(ExpectedConditions
-              .visibilityOfElementLocated(By.xpath("//h2[text() ='My Account']")));
-      Assert.assertFalse((account.isDisplayed()));
+      WebElement alert = wait.until(ExpectedConditions
+              .visibilityOfElementLocated(By.cssSelector(".alert")));
+      Assert.assertTrue((alert.isDisplayed()));
       driver.quit();
 
   }
