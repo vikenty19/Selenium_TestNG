@@ -18,14 +18,14 @@ public class LoginClass extends BasePage {
 
     @Test
     public void loginSuccess() {
-
-
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         driver.get(URL);
+
+
         driver.findElement(By.cssSelector(".fa-user")).click();
         WebElement login = wait.until(ExpectedConditions
                 .elementToBeClickable(By.linkText("Login")));
@@ -42,5 +42,30 @@ public class LoginClass extends BasePage {
         driver.quit();
 
     }
+
+  public void loginNegative(){
+        WebDriverManager.chromedriver().setup();
+      driver = new ChromeDriver();
+      driver.manage().window().maximize();
+      wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+      driver.get(URL);
+      driver.findElement(By.cssSelector(".fa-user")).click();
+      WebElement login = wait.until(ExpectedConditions
+              .elementToBeClickable(By.linkText("Login")));
+      login.click();
+      WebElement email = wait.until(ExpectedConditions
+              .elementToBeClickable(By.cssSelector("#input-email")));
+      email.clear();
+      String invalidLogin = generateLogin();
+      email.sendKeys(invalidLogin);
+      driver.findElement(By.cssSelector("#input-password")).sendKeys("12345");
+      driver.findElement(By.xpath("//input[@type ='submit']")).click();
+      WebElement account = wait.until(ExpectedConditions
+              .visibilityOfElementLocated(By.xpath("//h2[text() ='My Account']")));
+      Assert.assertFalse((account.isDisplayed()));
+      driver.quit();
+
+  }
 
 }
