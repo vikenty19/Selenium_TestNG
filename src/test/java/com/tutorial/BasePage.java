@@ -1,6 +1,7 @@
 package com.tutorial;
 
 import com.github.javafaker.Faker;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,6 +12,8 @@ import org.testng.annotations.AfterMethod;
 public class BasePage {
   protected  WebDriver driver;
   protected WebDriverWait wait;
+  protected static WebDriverManager manager;
+  protected String url ="https://omayo.blogspot.com/";
   protected String URL = "http://tutorialsninja.com/demo/";
   By passwordBtn = By.cssSelector("#input-password");
   By emailBtn =By.cssSelector("#input-email");
@@ -39,6 +42,12 @@ public String generateLogin() {
     WebElement emailLocator=waitUntilClickable(emailBtn);
     emailLocator.clear();
     emailLocator.sendKeys(email);
+
+  }
+
+  public WebElement findElement(By locator){
+  return wait.until(ExpectedConditions.elementToBeClickable(locator));
+
   }
  @AfterMethod(enabled = true)
   public void tearDown(){
