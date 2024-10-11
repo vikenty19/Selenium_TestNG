@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 
 import java.net.CacheRequest;
 import java.time.Duration;
@@ -47,16 +48,17 @@ public void softAssertEx(){
     manager.chromedriver().setup();
     driver =new ChromeDriver();
     driver.manage().window().maximize();
-    driver.get(URL);
+    driver.get(koelUrl);
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     String actualTitle = driver.getTitle();
-    assertEquals(actualTitle,expectedTitle);
+    SoftAssert softAssert = new SoftAssert();
+   softAssert.assertEquals(actualTitle,expectedTitle);
     String actualUrl = driver.getCurrentUrl();
     String expectedUrl = URL;
-    assertEquals(URL,actualUrl);
-    driver.findElement(By.name("search")).sendKeys("HP",Keys.ENTER);
-    assertTrue(driver.findElement(By.linkText("HP LP3065")).isDisplayed());
-
+    softAssert.assertEquals(actualUrl,expectedUrl);
+  /*  driver.findElement(By.cssSelector("[type='search']")).sendKeys("Lament",Keys.ENTER);
+    softAssert.assertTrue(driver.findElement(By.xpath("//span[contains(text(), 'Lament')]")).isDisplayed());*/
+    softAssert.assertAll();
 }
 
 

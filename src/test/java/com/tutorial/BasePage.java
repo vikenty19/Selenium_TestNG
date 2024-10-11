@@ -15,6 +15,7 @@ public class BasePage {
   protected static WebDriverManager manager;
   protected String url ="https://omayo.blogspot.com/";
   protected String URL = "http://tutorialsninja.com/demo/";
+  protected String koelUrl = "https://qa.koel.app/";
   By passwordBtn = By.cssSelector("#input-password");
   By emailBtn =By.cssSelector("#input-email");
 public String generateLogin() {
