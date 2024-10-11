@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
 
 public class BasePage {
   protected  WebDriver driver;
@@ -39,5 +40,8 @@ public String generateLogin() {
     emailLocator.clear();
     emailLocator.sendKeys(email);
   }
-
+ @AfterMethod(enabled = true)
+  public void tearDown(){
+  driver.quit();
+ }
 }
