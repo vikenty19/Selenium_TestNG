@@ -1,11 +1,10 @@
 package tutorial.tests;
 
 import com.tutorial.BasePage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebElement;
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.io.FileHandler;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
@@ -43,10 +42,22 @@ public class ScreenShots extends BasePage {
          WebElement loginSection = waitUntilVisible(By.cssSelector(".login-wrapper>div"));
          File login = loginSection.getScreenshotAs(OutputType.FILE);
         FileHandler.copy(login,new File("./screenshots/login.png"));
+
          driver.quit();
 
 
 
      }
+ @Test
+    public void fullScreenShot() throws IOException {
+     WebDriverManager.firefoxdriver().setup();
+      driver = new FirefoxDriver();
+     driver.manage().window().maximize();
+     driver.get(url);
 
+     File login1 =((FirefoxDriver)driver).getFullPageScreenshotAs(OutputType.FILE);
+     FileHandler.copy(login1,new File("./screenshots/fullScreenShot.png"));
+     tearDown();//driver.quit
+
+ }
 }
