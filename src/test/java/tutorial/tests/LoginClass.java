@@ -64,7 +64,7 @@ public class LoginClass extends BasePage {
       WebElement alert = wait.until(ExpectedConditions
               .visibilityOfElementLocated(By.cssSelector(".alert")));
       Assert.assertTrue((alert.isDisplayed()));
-      driver.quit();
+     tearDown();
 
   }
 
