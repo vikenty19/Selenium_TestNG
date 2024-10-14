@@ -25,10 +25,10 @@ public class LoginClass extends BasePage {
 
     @Test(priority = 2)
     public void loginSuccess() {
-        WebDriverManager.chromedriver().setup();
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+     //   WebDriverManager.chromedriver().setup();
+    //    driver = new ChromeDriver();
+    //    driver.manage().window().maximize();
+    //    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.get(URL);
         driver.findElement(accountEnterBtn).click();
         WebElement login =waitUntilClickable(loginBtn);
@@ -45,10 +45,7 @@ public class LoginClass extends BasePage {
 
     @Test(priority = 1,invocationCount = 3)
   public void loginNegative(){
-        WebDriverManager.chromedriver().setup();
-      driver = new ChromeDriver();
-      driver.manage().window().maximize();
-      wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
 
       driver.get(URL);
       driver.findElement(By.cssSelector(".fa-user")).click();
