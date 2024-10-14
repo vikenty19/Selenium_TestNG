@@ -50,7 +50,7 @@ public String generateLogin() {
   return wait.until(ExpectedConditions.elementToBeClickable(locator));
 
   }
- @AfterMethod(enabled = true)
+ @AfterMethod(enabled = false)
   public void tearDown(){
   driver.quit();
  }
