@@ -13,8 +13,9 @@ public class Calendars extends BasePage {
         dataField.click();
         //wait for calendar appearance
        waitUntilVisible(By.id("ui-datepicker-div"));
+        selectDate("2021","March","15");
        //check the month and the year
-        String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
+   /*     String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
         System.out.println(monthYear);
         String month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
         String year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
@@ -23,14 +24,34 @@ public class Calendars extends BasePage {
         String[]my = monthYear.split(" ");
         String month1 = my[0];
         String year1  = my[1];
+        */
 
   // pick the date previous
-        while(!(month.equals("January")&& year.equals("2022"))){
+    /*    while(!(month.equals("January")&& year.equals("2022"))){
             findElement(By.cssSelector(".ui-icon-circle-triangle-w")).click();
             month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
             year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
         }
         System.out.println(month+ "   "+year);
-        findElement(By.xpath("//a[contains(text(),'27')]")).click();
+        findElement(By.xpath("//a[contains(text(),'27')]")).click();*/
     }
-}
+    //create universal method
+    public void selectDate(String yearPick,String monthPick,String datePick){
+
+        String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
+        System.out.println(monthYear);
+        String month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+        String year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+
+
+        while(!(month.equals(monthPick)&& year.equals(yearPick))){
+
+            findElement(By.cssSelector(".ui-icon-circle-triangle-w")).click();
+            month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+        }
+        String xpathText = "//a[contains(text(),\'"+datePick+"\')]";
+        findElement(By.xpath(xpathText)).click();
+    }
+
+    }
