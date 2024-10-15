@@ -13,7 +13,11 @@ public class Calendars extends BasePage {
         dataField.click();
         //wait for calendar appearance
        waitUntilVisible(By.id("ui-datepicker-div"));
-        selectDate("2021","March","15");
+       //created method
+     //   selectDate("2023","March","32");
+        selectDate("2023","October","30");
+      //  selectDate("2024","January","1");
+     //   selectDate("2024","July","341");
        //check the month and the year
    /*     String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
         System.out.println(monthYear);
@@ -39,19 +43,42 @@ public class Calendars extends BasePage {
     public void selectDate(String yearPick,String monthPick,String datePick){
 
         String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
-        System.out.println(monthYear);
         String month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
         String year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
-
-
+        String[] oddMonth = {"January","March","May","July","August","October","December"};
+        String[] evenMonth = {"April","June","September","November"};
         while(!(month.equals(monthPick)&& year.equals(yearPick))){
+            for(String i :oddMonth){
+                if(Integer.parseInt(datePick)>31){
+                    System.out.println("You enter a day not existing ");
+                    return;
+            }
+            }
+            for (String i:evenMonth){
+                if(Integer.parseInt(datePick)>30){
+                    System.out.println("You enter a day not existing ");
+                    return;
+                }
+            }
+            if(monthPick.equals("February")&& Integer.parseInt(datePick)>29){
+                System.out.println("Invalid day is provided  "+ datePick+"/"+monthPick+"/"+yearPick);
+                return;
+            }
 
-            findElement(By.cssSelector(".ui-icon-circle-triangle-w")).click();
+            WebElement previous = waitUntilVisible(By.cssSelector(".ui-icon-circle-triangle-w"));
+            previous.click();
             month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
             year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
         }
-        String xpathText = "//a[contains(text(),\'"+datePick+"\')]";
-        findElement(By.xpath(xpathText)).click();
+        // while is ended
+        String xpathText = "//a[text()=\'"+datePick+"\']";//a[text() ='30']
+
+        try {
+            findElement(By.xpath(xpathText)).click();
+        }catch (Exception e){
+            System.out.println("Invalid data provided  "+ datePick+"/"+monthPick+"/"+yearPick);
+        }
+
     }
 
     }
