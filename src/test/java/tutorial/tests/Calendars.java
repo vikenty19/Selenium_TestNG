@@ -14,17 +14,14 @@ public class Calendars extends BasePage {
         //wait for calendar appearance
         waitUntilVisible(By.id("ui-datepicker-div"));
         //created method
-     //  selectDate("2023", "March", "32");
+        selectDate("2023", "March", "32");
         selectDate("2023", "December", "31");
-     //   driver.navigate().refresh();
-      //  Thread.sleep(1000);
-        dataField.click();
-        dataField.clear();
+
+      //
         driver.navigate().refresh();
+        Thread.sleep(1000);
 
-        dataField.click();
-
-        selectDate("2024", "January", "1");
+        selectDate("2023", "January", "1");
      /*
         selectDate("2024", "July", "341");
         driver.navigate().refresh();
