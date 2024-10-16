@@ -7,6 +7,8 @@ import org.testng.annotations.Test;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+import java.util.Locale;
 
 public class Calendars extends BasePage {
     @Test
@@ -23,7 +25,7 @@ public class Calendars extends BasePage {
          dataField.click();
          dataField.clear();
         waitUntilVisible(By.id("ui-datepicker-div"));
-       
+
         selectDate("2023", "July", "31");
         dataField.click();
         dataField.clear();
@@ -99,7 +101,7 @@ public class Calendars extends BasePage {
     }
     @Test
     public void calendarUpAndDown(){
-        String eDate = "13-03-2023";
+        String eDate = "03-05-2025";
        DateTimeFormatter dtf= DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate eld = LocalDate.parse(eDate,dtf);
         int eDay = eld.getDayOfMonth();
@@ -111,8 +113,32 @@ public class Calendars extends BasePage {
         dataField.click();
         //wait for calendar appearance
         waitUntilVisible(By.id("ui-datepicker-div"));
-
-
-
+        String aMonthText = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+        String aYearText = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+        //convert string "month" format into integer
+        Integer actMonth = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH).parse(aMonthText)
+                .get(ChronoField.MONTH_OF_YEAR);
+        int actYear=Integer.parseInt(aYearText);
+        // go previous month and day
+        while(eMonth < actMonth||eYear < actYear){
+            driver.findElement(By.xpath("//a[@title='Prev']")).click();
+            aMonthText = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            aYearText = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+            actMonth = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH).parse(aMonthText)
+                    .get(ChronoField.MONTH_OF_YEAR);
+            actYear=Integer.parseInt(aYearText);
+        }
+        while(eMonth > actMonth||eYear > actYear){
+            driver.findElement(By.xpath("//a[@title='Next']")).click();
+            aMonthText = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            aYearText = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+            actMonth = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH).parse(aMonthText)
+                    .get(ChronoField.MONTH_OF_YEAR);
+            actYear=Integer.parseInt(aYearText);
+        }
+//     //Picking a day
+        String xpath = " //table[@class ='ui-datepicker-calendar']//td[@data-handler ='selectDay']/a[text()=\'"+eDay+"\']";
+            findElement(By.xpath(xpath)).click();
+            tearDown();
     }
 }
