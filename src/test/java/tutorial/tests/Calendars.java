@@ -159,14 +159,18 @@ public class Calendars extends BasePage {
 
         driver.get("https://www.hyrtutorials.com/p/calendar-practice.html");
         findElement(By.cssSelector("#third_date_picker")).click();
+        selectDataInCalendar("3","May","2026");
+    }
+
+    private void selectDataInCalendar(String selDay,String selMonth,String selYear) {
         WebElement month = waitUntilClickable(By.cssSelector("[data-handler='selectMonth']"));
         Select select = new Select(month);
-        select.selectByVisibleText("May");
+        select.selectByVisibleText(selMonth);
         WebElement year = waitUntilClickable(By.cssSelector("[data-handler='selectYear']"));
         Select selectYear = new Select(year);
-        selectYear.selectByVisibleText("2025");
-        String eDay = "15";
-       String xpath = ("//table[@class= 'ui-datepicker-calendar']//td[@data-handler='selectDay']/a[text() =\'"+eDay+"\']");
+        selectYear.selectByVisibleText(selYear);
+        String eDay = selDay;
+        String xpath = ("//table[@class= 'ui-datepicker-calendar']//td[@data-handler='selectDay']/a[text() =\'"+eDay+"\']");
         findElement(By.xpath(xpath)).click();
     }
 }
