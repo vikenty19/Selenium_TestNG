@@ -2,7 +2,9 @@ package tutorial.tests;
 
 import com.tutorial.BasePage;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -101,7 +103,7 @@ public class Calendars extends BasePage {
     }
     @Test
     public void calendarUpAndDown(){
-        String eDate = "03-05-2025";
+        String eDate = "16-10-2024";
        DateTimeFormatter dtf= DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate eld = LocalDate.parse(eDate,dtf);
         int eDay = eld.getDayOfMonth();
@@ -140,5 +142,31 @@ public class Calendars extends BasePage {
         String xpath = " //table[@class ='ui-datepicker-calendar']//td[@data-handler ='selectDay']/a[text()=\'"+eDay+"\']";
             findElement(By.xpath(xpath)).click();
             tearDown();
+    }
+
+    @Test
+    public void calendarWithTime(){
+        driver.get("http://demo.guru99.com/test");
+        findElement(By.cssSelector("input[name='bdaytime']")).sendKeys("03051968");
+        findElement(By.cssSelector("input[name='bdaytime']")).sendKeys(Keys.TAB);
+        findElement(By.cssSelector("input[name='bdaytime']")).sendKeys("0930");
+        findElement(By.cssSelector("input[type='submit']")).click();
+
+
+    }
+    @Test
+    public void DropDownCalendar(){
+
+        driver.get("https://www.hyrtutorials.com/p/calendar-practice.html");
+        findElement(By.cssSelector("#third_date_picker")).click();
+        WebElement month = waitUntilClickable(By.cssSelector("[data-handler='selectMonth']"));
+        Select select = new Select(month);
+        select.selectByVisibleText("May");
+        WebElement year = waitUntilClickable(By.cssSelector("[data-handler='selectYear']"));
+        Select selectYear = new Select(year);
+        selectYear.selectByVisibleText("2025");
+        String eDay = "15";
+       String xpath = ("//table[@class= 'ui-datepicker-calendar']//td[@data-handler='selectDay']/a[text() =\'"+eDay+"\']");
+        findElement(By.xpath(xpath)).click();
     }
 }
