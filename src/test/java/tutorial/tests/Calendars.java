@@ -5,6 +5,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 public class Calendars extends BasePage {
     @Test
     public void calendar1() throws InterruptedException {
@@ -13,19 +16,20 @@ public class Calendars extends BasePage {
         dataField.click();
         //wait for calendar appearance
         waitUntilVisible(By.id("ui-datepicker-div"));
-        //created method
+        //using created method
         selectDate("2023", "March", "32");
-        selectDate("2023", "December", "31");
-
-      //
-        driver.navigate().refresh();
-        Thread.sleep(1000);
-
+         selectDate("2023", "December", "32");
+        selectDate("2024", "February", "29");//not solving problem with several query
+         dataField.click();
+         dataField.clear();
+        waitUntilVisible(By.id("ui-datepicker-div"));
         selectDate("2023", "January", "1");
-     /*
+        System.out.println("Huray!!");
+        dataField.click();
+        dataField.clear();
         selectDate("2024", "July", "341");
         driver.navigate().refresh();
-        selectDate("2024", "February", "29");*/
+
         //check the month and the year
    /*     String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
         System.out.println(monthYear);
@@ -90,5 +94,22 @@ public class Calendars extends BasePage {
         }
 
     }
+    @Test
+    public void calendarUpAndDown(){
+        String eDate = "13-03-2023";
+       DateTimeFormatter dtf= DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate eld = LocalDate.parse(eDate,dtf);
+        int eDay = eld.getDayOfMonth();
+        int eMonth = eld.getMonthValue();
+        int eYear = eld.getYear();
 
+        driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");
+        WebElement dataField =waitUntilClickable(By.cssSelector("input#datepicker"));
+        dataField.click();
+        //wait for calendar appearance
+        waitUntilVisible(By.id("ui-datepicker-div"));
+
+
+
+    }
 }
