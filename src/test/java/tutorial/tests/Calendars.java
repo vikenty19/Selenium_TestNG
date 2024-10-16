@@ -23,11 +23,14 @@ public class Calendars extends BasePage {
          dataField.click();
          dataField.clear();
         waitUntilVisible(By.id("ui-datepicker-div"));
-        selectDate("2023", "January", "1");
-        System.out.println("Huray!!");
+       
+        selectDate("2023", "July", "31");
         dataField.click();
         dataField.clear();
-        selectDate("2024", "July", "341");
+        selectDate("2023", "January", "1");
+        System.out.println("Huray!!");
+
+        ;
         driver.navigate().refresh();
 
         //check the month and the year
