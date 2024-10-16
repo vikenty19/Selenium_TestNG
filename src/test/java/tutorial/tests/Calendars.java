@@ -159,7 +159,7 @@ public class Calendars extends BasePage {
 
         driver.get("https://www.hyrtutorials.com/p/calendar-practice.html");
         findElement(By.cssSelector("#third_date_picker")).click();
-        selectDataInCalendar("3","May","2026");
+        selectDataInCalendar("15","Mar","2027");
     }
 
     private void selectDataInCalendar(String selDay,String selMonth,String selYear) {
