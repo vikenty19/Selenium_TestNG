@@ -20,15 +20,11 @@ public class LoginClass extends BasePage {
 
    By accountEnterBtn= By.cssSelector(".fa-user");
    By submitBtn = By.xpath("//input[@type ='submit']");
-   String email = "vv@mail.ru";
-   String password = "megadelta";
+
 
     @Test(priority = 2)
     public void loginSuccess() {
-     //   WebDriverManager.chromedriver().setup();
-    //    driver = new ChromeDriver();
-    //    driver.manage().window().maximize();
-    //    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
         driver.get(URL);
         driver.findElement(accountEnterBtn).click();
         WebElement login =waitUntilClickable(loginBtn);

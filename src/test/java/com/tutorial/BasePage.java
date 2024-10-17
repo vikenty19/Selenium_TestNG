@@ -24,6 +24,8 @@ public class BasePage {
   protected String koelUrl = "https://qa.koel.app/";
   By passwordBtn = By.cssSelector("#input-password");
   By emailBtn =By.cssSelector("#input-email");
+    protected String email = "vv@mail.ru";
+    protected String password = "megadelta";
 public String generateLogin() {
   Faker faker = new Faker();
   String loginNegative = faker.animal().name();

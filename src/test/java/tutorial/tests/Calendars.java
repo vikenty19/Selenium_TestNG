@@ -5,6 +5,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 import java.time.LocalDate;
@@ -154,8 +155,9 @@ public class Calendars extends BasePage {
 
 
     }
+
     @Test
-    public void DropDownCalendar(){
+    public void DropDownCalendar(String selDay,String selMonth,String selYear){
 
         driver.get("https://www.hyrtutorials.com/p/calendar-practice.html");
         findElement(By.cssSelector("#third_date_picker")).click();
