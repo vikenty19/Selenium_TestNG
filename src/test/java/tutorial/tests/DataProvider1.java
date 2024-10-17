@@ -26,6 +26,24 @@ public class DataProvider1 extends BasePage {
         tearDown();
 
     }
+    // In case if  there ara many field to insert
+    @Test(dataProvider = "setOfData")
+    public void loginDDTest1(String[] str){
+        driver.get(URL);
+        //login
+        findElement(By.cssSelector(".fa-user")).click();
+        findElement(By.xpath("//li/a[text()='Login']")).click();
+        WebElement emailBtn = waitUntilClickable(By.id("input-email"));
+        emailBtn.click();
+        emailBtn.sendKeys(str[0]);
+        WebElement login =
+                waitUntilClickable(By.id("input-password"));
+        login.sendKeys(str[1]);
+        findElement(By.cssSelector("[type = 'submit']")).click();
+        Assert.assertTrue(waitUntilVisible(By.xpath("//h2[text() = 'My Account']")).isDisplayed());
+        tearDown();
+
+    }
     @DataProvider
     public Object[][] setOfData() {
         String[][] data = {{"vv@mail.ru", "megadelta"}, {"amotooricap3@gmail.com", "12345"}
