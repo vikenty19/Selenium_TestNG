@@ -156,15 +156,15 @@ public class Calendars extends BasePage {
 
     }
 
-    @Test
-    public void DropDownCalendar(String selDay,String selMonth,String selYear){
+    @Test(dataProvider = "getData")
+    public void DropDownCalendar(String Day,String Month,String Year){
 
         driver.get("https://www.hyrtutorials.com/p/calendar-practice.html");
         findElement(By.cssSelector("#third_date_picker")).click();
-       selectDataInCalendar("15","Mar","2027");
-       driver.navigate().refresh();
+       selectDataInCalendar(Day,Month,Year);
+     /*  driver.navigate().refresh();
         findElement(By.cssSelector("#third_date_picker")).click();
-        selectDataInCalendar("1","Mar","2025");
+        selectDataInCalendar("1","May","2025");*/
         tearDown();
     }
 
@@ -178,5 +178,10 @@ public class Calendars extends BasePage {
         String eDay = selDay;
         String xpath = ("//table[@class= 'ui-datepicker-calendar']//td[@data-handler='selectDay']/a[text() =\'"+eDay+"\']");
         findElement(By.xpath(xpath)).click();
+    }
+    @DataProvider
+    public Object[][] getData(){
+        String[][] date = {{"15","Mar","2027"},{"1","May","2025"},{"31","Dec","2027"},{"1","Jan","2028"}};
+        return date;
     }
 }
