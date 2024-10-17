@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class DataProvider1 extends BasePage {
 
-    @Test(dataProvider = "setOfData")
+    @Test(dataProvider = "setOfData",dataProviderClass = DataProviderExamples.class)
     public void loginDDTest(String email1,String password1){
         driver.get(URL);
         //login
@@ -27,7 +27,7 @@ public class DataProvider1 extends BasePage {
 
     }
     // In case if  there ara many field to insert
-    @Test(dataProvider = "setOfData")
+    @Test(dataProvider = "setOfData",dataProviderClass = DataProviderExamples.class)
     public void loginDDTest1(String[] str){
         driver.get(URL);
         //login
@@ -44,10 +44,5 @@ public class DataProvider1 extends BasePage {
         tearDown();
 
     }
-    @DataProvider
-    public Object[][] setOfData() {
-        String[][] data = {{"vv@mail.ru", "megadelta"}, {"amotooricap3@gmail.com", "12345"}
-                , {"amotooricap7@gmail.com", "12345"}};
-        return data;
-    }
+
 }
