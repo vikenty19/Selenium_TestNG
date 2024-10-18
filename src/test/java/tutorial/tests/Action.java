@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.Test;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Action extends BasePage {
     @Test
@@ -22,45 +23,47 @@ public class Action extends BasePage {
         driver.manage().window().maximize();
         driver.get(url);
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Actions actions=new Actions(driver);
+        Actions actions = new Actions(driver);
         WebElement blog = waitUntilClickable(By.cssSelector("#blogsmenu"));
         actions.moveToElement(blog).perform();
         WebElement secondOption = waitUntilClickable(By.xpath("//span[contains(text(), 'SeleniumOneByArun')]"));
         actions.moveToElement(secondOption).click().build().perform();
 
-         //secondOption.click(); // yuo can do in it way
+        //secondOption.click(); // yuo can do in it way
 
     }
+
     @Test
     public void dragAndDrop() throws InterruptedException {
         manager.chromedriver().setup();
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        driver.get(url+"p/page3.html");
-        WebElement slider =waitUntilClickable(By.xpath("//a[@aria-labelledby='price-min-label']"));
+        driver.get(url + "p/page3.html");
+        WebElement slider = waitUntilClickable(By.xpath("//a[@aria-labelledby='price-min-label']"));
         Actions actions = new Actions(driver);
-        actions.dragAndDropBy(slider,-100,0).perform();
+        actions.dragAndDropBy(slider, -100, 0).perform();
         Thread.sleep(2000);
 
 
     }
 
-@Test
+    @Test
     public void dragAndMoveTo() throws InterruptedException {
-    manager.chromedriver().setup();
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-    driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
-    Actions actions= new Actions(driver);
-    WebElement stockholm = driver.findElement(By.id("box2"));
-    WebElement norway = driver.findElement(By.id("box101"));
-    actions.clickAndHold(stockholm).moveToElement(norway).release().build().perform();
-   // actions.dragAndDrop(stockholm,norway); the same but work worse
-    Thread.sleep(2000);
+        manager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.get("http://www.dhtmlgoodies.com/scripts/drag-drop-custom/demo-drag-drop-3.html");
+        Actions actions = new Actions(driver);
+        WebElement stockholm = driver.findElement(By.id("box2"));
+        WebElement norway = driver.findElement(By.id("box101"));
+        actions.clickAndHold(stockholm).moveToElement(norway).release().build().perform();
+        // actions.dragAndDrop(stockholm,norway); the same but work worse
+        Thread.sleep(2000);
 
     }
+
     @Test
     public void pressKeyDownAndUp() throws InterruptedException {
         manager.chromedriver().setup();
@@ -77,4 +80,6 @@ public class Action extends BasePage {
 
 
     }
-}
+
+
+    }
