@@ -35,6 +35,7 @@ public class TableHandlePaginator extends BasePage {
         }
         tearDown();
     }
+
     @Test
     public void handleDynamicTable() throws InterruptedException {
         driver.get("https://demo3x.opencartreports.com/admin/");
@@ -42,44 +43,40 @@ public class TableHandlePaginator extends BasePage {
         findElement(By.id("input-username")).sendKeys("demo");
         findElement(By.id("input-password")).sendKeys("demo");
         findElement(By.cssSelector("[type = 'submit']")).click();
-
-       // Thread.sleep(3000);
-       // Alert alert= driver.switchTo().alert();
-       // alert.accept();
         findElement(By.cssSelector("#menu-sale>a")).click();
         findElement(By.xpath("//a[text() = 'Orders']")).click();
         String customerName = "Billy Brooks";
+
         // for pagination we need number of pages
         String pagesText = findElement(By.cssSelector(".col-sm-6.text-right")).getText();
         System.out.println(pagesText);
         int inception = pagesText.indexOf("(");
         int completion = pagesText.indexOf("Pages");
-         String numberOfPages = pagesText.substring(inception+1,completion-1);
-         int pages =Integer.parseInt(numberOfPages);
-        for (int p = 1; p <=pages ; p++) {
+        String numberOfPages = pagesText.substring(inception + 1, completion - 1);
+        int pages = Integer.parseInt(numberOfPages);
+        for (int p = 1; p <= pages; p++) {
             String xpathText =
-                    "(//form[@id ='form-order']//tr//td/a[contains(text(),'"+customerName+"')])[1]";
-                            //  (//form[@id ='form-order']//tbody/tr/td/a[contains(text(),'Billy Brooks')])[1]
+                    "(//form[@id ='form-order']//tr//td/a[contains(text(),'" + customerName + "')])[1]";
+            //Use try because name may not appear on this page
 
-          //  System.out.println(xpathText);
-            String name = findElement(By.xpath(xpathText)).getText();
-            System.out.println(name);
-          try {
-              if(findElement(By.xpath(xpathText)).isDisplayed()){
-                  String finalXpath = xpathText+"/..//preceding-sibling::td[2]";
-                  System.out.println(finalXpath);
-                  findElement(By.xpath(finalXpath)).click();
-                  break;
-              }
-          }catch (Throwable t) {
+            try {
+                String name = findElement(By.xpath(xpathText)).getText();
+                System.out.println(name);
+                if (findElement(By.xpath(xpathText)).isDisplayed()) {
+                    //adding xpath end point to get to the check-box
+                    String finalXpath = xpathText + "/..//preceding-sibling::td[2]";
+                    findElement(By.xpath(finalXpath)).click();
+                    break;
+                }
+            } catch (Throwable t) {
 
-          }
+            }
             //Switch to the next page if needed
             findElement(By.xpath
                     ("//ul[@class='pagination']/li[@class='active']/span/following::a[2]")).click();
         }
 
-
+        tearDown();
 
     }
 }
