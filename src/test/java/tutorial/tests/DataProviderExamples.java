@@ -10,4 +10,10 @@ public class DataProviderExamples {
                 , {"amotooricap7@gmail.com", "12345"}};
         return data;
     }
+    @DataProvider
+    public Object[] setOfData1(){
+        Object[][]data1 = {{"VV","RR"},{"tt","MM"}};
+        return data1;
+
+    }
 }
