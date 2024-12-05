@@ -34,7 +34,7 @@ public class ScreenShots extends BasePage {
          //find element
          WebElement screenShotArea = waitUntilVisible(By.id("multiselect1"));
          File srcFile = screenShotArea.getScreenshotAs(OutputType.FILE);
-         FileHandler.copy(srcFile,new File("./screenshots/multibox.png"));//screen snot of webElement
+         FileHandler.copy(srcFile,new File("./screenshots/multibox.png"));//screen shot of webElement
 
          //area screenshot
 

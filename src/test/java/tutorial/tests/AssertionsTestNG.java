@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -29,6 +30,7 @@ public class AssertionsTestNG extends BasePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         //Getting title
         String getTitle = driver.getTitle();
+        System.out.println(getTitle);
         //Aseertion
          assertEquals(getTitle,expectedTitle,"Title is NOT match"); //static Assert.*
 
@@ -36,7 +38,7 @@ public class AssertionsTestNG extends BasePage {
 
     @Test
     public void example(){
-        driver =new ChromeDriver();
+        driver =new EdgeDriver();
         String str = " ";
         Assert.assertNotNull(str);
     }
