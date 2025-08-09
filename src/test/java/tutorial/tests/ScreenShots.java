@@ -15,14 +15,18 @@ import java.time.Duration;
 
 public class ScreenShots extends BasePage {
      @Test
-             public void getScreenShot() throws IOException {
+             public void getScreenShot()  {
          manager.chromedriver().setup();
          driver = new ChromeDriver();
          driver.manage().window().maximize();
          wait = new WebDriverWait(driver, Duration.ofSeconds(10));
          driver.get(url);
          File srcFile = ((TakesScreenshot)driver).getScreenshotAs((OutputType.FILE) );//create a file with screenShot
-         FileHandler.copy(srcFile,new File("./screenshots/homePage.png"));//directory screenshots must be created in advance
+         try {
+             FileHandler.copy(srcFile,new File("./screenshots/homePage.png"));//directory screenshots must be created in advance
+         } catch (IOException e) {
+             System.out.println("File is not found");
+         }
      }
      @Test
     public void webElementScreenShot() throws IOException {
@@ -49,14 +53,19 @@ public class ScreenShots extends BasePage {
 
      }
  @Test
-    public void fullScreenShot() throws IOException {
+    public void fullScreenShot()  {
      WebDriverManager.firefoxdriver().setup();
       driver = new FirefoxDriver();
      driver.manage().window().maximize();
      driver.get(url);
 
      File login1 =((FirefoxDriver)driver).getFullPageScreenshotAs(OutputType.FILE);
-     FileHandler.copy(login1,new File("./screenshots/fullScreenShot.png"));
+     try {
+         FileHandler.copy(login1,new File("./screenshots/fullScreenShot.png"));
+     } catch (IOException e) {
+       //  throw new RuntimeException(e);
+         System.out.println("File is not found");
+     }
      tearDown();//driver.quit
 
  }
