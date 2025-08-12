@@ -8,30 +8,45 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.*;
 
+import javax.xml.crypto.Data;
 import java.time.Duration;
+import java.util.Date;
 
 public class BasePage {
-  protected  WebDriver driver ;
-  protected WebDriverWait wait;
-  protected static WebDriverManager manager;
-  protected String url ="https://omayo.blogspot.com/";
-  protected String URL = "http://tutorialsninja.com/demo/";
-  protected String koelUrl = "https://qa.koel.app/";
+    protected  WebDriver driver ;
+    protected WebDriverWait wait;
+    protected WebDriverManager manager;
+    protected Actions action;
+    public BasePage(WebDriver givenDriver){
+        this.driver = givenDriver;
+        wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+        manager.chromedriver().setup();
+        action = new Actions(givenDriver);
+        PageFactory.initElements(driver,this);
+
+
+    }
+
+
   By passwordBtn = By.cssSelector("#input-password");
   By emailBtn =By.cssSelector("#input-email");
-    protected String email = "vv@mail.ru";
-    protected String password = "megadelta";
+
 public String generateLogin() {
   Faker faker = new Faker();
   String loginNegative = faker.animal().name();
   return loginNegative;
+}
+
+public String generateEmailTimeStamp(){
+    Date data =new Date();
+    String randomGmail = data.toString().replace(" ","_").replace(":","_")+"@gmail.com";
+    return randomGmail.substring(8);
 }
   public WebElement waitUntilVisible(By locator){
     WebElement element= wait.until(ExpectedConditions

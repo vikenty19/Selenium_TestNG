@@ -13,37 +13,32 @@ import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
 
-public class ScreenShots extends BasePage {
-     @Test
+public class ScreenShots extends BaseTest {
+
+
+    @Test
              public void getScreenShot()  {
-         manager.chromedriver().setup();
-         driver = new ChromeDriver();
-         driver.manage().window().maximize();
-         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
          driver.get(url);
          File srcFile = ((TakesScreenshot)driver).getScreenshotAs((OutputType.FILE) );//create a file with screenShot
          try {
              FileHandler.copy(srcFile,new File("./screenshots/homePage.png"));//directory screenshots must be created in advance
-         } catch (IOException e) {
+         } catch (Exception e) {
              System.out.println("File is not found");
          }
      }
      @Test
     public void webElementScreenShot() throws IOException {
-         manager.chromedriver().setup();
-         driver = new ChromeDriver();
-         driver.manage().window().maximize();
-         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-         driver.get(url);
+           driver.get(url);
          //find element
-         WebElement screenShotArea = waitUntilVisible(By.id("multiselect1"));
+         BasePage basePage = new BasePage(driver);
+         WebElement screenShotArea = basePage.waitUntilVisible(By.id("multiselect1"));
          File srcFile = screenShotArea.getScreenshotAs(OutputType.FILE);
          FileHandler.copy(srcFile,new File("./screenshots/multibox.png"));//screen shot of webElement
 
          //area screenshot
 
          driver.get(koelUrl);
-         WebElement loginSection = waitUntilVisible(By.cssSelector(".login-wrapper>div"));
+         WebElement loginSection = basePage.waitUntilVisible(By.cssSelector(".login-wrapper>div"));
          File login = loginSection.getScreenshotAs(OutputType.FILE);
         FileHandler.copy(login,new File("./screenshots/login.png"));
 
@@ -52,7 +47,7 @@ public class ScreenShots extends BasePage {
 
 
      }
- @Test
+ @Test//firefox only
     public void fullScreenShot()  {
      WebDriverManager.firefoxdriver().setup();
       driver = new FirefoxDriver();
@@ -69,4 +64,5 @@ public class ScreenShots extends BasePage {
      tearDown();//driver.quit
 
  }
+
 }

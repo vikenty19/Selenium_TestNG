@@ -3,6 +3,7 @@ package tutorial.tests;
 import com.tutorial.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.DataProvider;
@@ -14,6 +15,10 @@ import java.time.temporal.ChronoField;
 import java.util.Locale;
 
 public class Calendars extends BasePage {
+    public Calendars(WebDriver givenDriver) {
+        super(givenDriver);
+    }
+
     @Test
     public void calendar1() throws InterruptedException {
         driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");

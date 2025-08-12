@@ -3,12 +3,15 @@ package tutorial.tests;
 import com.tutorial.BasePage;
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class TableHandlePaginator extends BasePage {
+public class TableHandlePaginator extends BaseTest {
+
+
 
     @Test
     public void printTableWithTitle() {
@@ -39,16 +42,16 @@ public class TableHandlePaginator extends BasePage {
     @Test
     public void handleDynamicTable() throws InterruptedException {
         driver.get("https://demo3x.opencartreports.com/admin/");
+        BasePage basePage = new BasePage(driver);
 
-        findElement(By.id("input-username")).sendKeys("demo");
-        findElement(By.id("input-password")).sendKeys("demo");
-        findElement(By.cssSelector("[type = 'submit']")).click();
-        findElement(By.cssSelector("#menu-sale>a")).click();
-        findElement(By.xpath("//a[text() = 'Orders']")).click();
+      basePage.findElement(By.id("input-password")).sendKeys("demo");
+        basePage.findElement(By.cssSelector("[type = 'submit']")).click();
+        basePage.findElement(By.cssSelector("#menu-sale>a")).click();
+        basePage.findElement(By.xpath("//a[text() = 'Orders']")).click();
         String customerName = "Billy Brooks";
 
         // for pagination we need number of pages
-        String pagesText = findElement(By.cssSelector(".col-sm-6.text-right")).getText();
+        String pagesText = basePage.findElement(By.cssSelector(".col-sm-6.text-right")).getText();
         System.out.println(pagesText);
         int inception = pagesText.indexOf("(");
         int completion = pagesText.indexOf("Pages");
@@ -60,19 +63,19 @@ public class TableHandlePaginator extends BasePage {
             //Use try because name may not appear on this page
 
             try {
-                String name = findElement(By.xpath(xpathText)).getText();
+                String name = basePage.findElement(By.xpath(xpathText)).getText();
                 System.out.println(name);
-                if (findElement(By.xpath(xpathText)).isDisplayed()) {
+                if (basePage.findElement(By.xpath(xpathText)).isDisplayed()) {
                     //adding xpath end point to get to the check-box
                     String finalXpath = xpathText + "/..//preceding-sibling::td[2]";
-                    findElement(By.xpath(finalXpath)).click();
+                    basePage.findElement(By.xpath(finalXpath)).click();
                     break;
                 }
             } catch (Throwable t) {
 
             }
             //Switch to the next page if needed
-            findElement(By.xpath
+            basePage.findElement(By.xpath
                     ("//ul[@class='pagination']/li[@class='active']/span/following::a[2]")).click();
         }
 
