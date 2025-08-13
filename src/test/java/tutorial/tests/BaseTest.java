@@ -20,6 +20,7 @@ public class BaseTest {
     public static String koelUrl = "https://qa.koel.app/";
     protected String email = "vv@mail.ru";
     protected String password = "megadelta";
+    protected String passwordTutorial = "12345";
     @BeforeMethod
     public void setUpBrowser(){
         manager.chromedriver().setup();

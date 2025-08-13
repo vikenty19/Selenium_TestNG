@@ -34,10 +34,6 @@ public class BasePage {
 
     }
 
-
-  By passwordBtn = By.cssSelector("#input-password");
-  By emailBtn =By.cssSelector("#input-email");
-
 public String generateLogin() {
   Faker faker = new Faker();
   String loginNegative = faker.animal().name();
