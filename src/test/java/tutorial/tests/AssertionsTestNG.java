@@ -10,7 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
+import org.testng.Assert.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 
@@ -25,12 +25,7 @@ public class AssertionsTestNG extends BaseTest {
 
     @Test
     public void assertEqualTitle(){
-      /*  manager.chromedriver().setup();
-        driver =new ChromeDriver();
-        driver.manage().window().maximize();
-         wait = new WebDriverWait(driver, Duration.ofSeconds(10));*/
         driver.get(URL);
-
         //Getting title
         String getTitle = driver.getTitle();
         System.out.println(getTitle);
@@ -43,7 +38,7 @@ public class AssertionsTestNG extends BaseTest {
     public void example(){
         driver =new EdgeDriver();
         String str = " ";
-        Assert.assertNotNull(str);
+        assertNotNull(str);
     }
     // Soft Assert
 

@@ -23,6 +23,7 @@ public class BasePage {
     protected WebDriverWait wait;
     protected WebDriverManager manager;
     protected Actions action;
+
     public BasePage(WebDriver givenDriver){
         this.driver = givenDriver;
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
@@ -60,16 +61,7 @@ public String generateEmailTimeStamp(){
     return elementClick;
 
   }
-  public void enterPassword(String passWord) {
-    driver.findElement(passwordBtn).sendKeys(passWord);
-  }
 
-  public void enterEmail(String email) {
-    WebElement emailLocator=waitUntilClickable(emailBtn);
-    emailLocator.clear();
-    emailLocator.sendKeys(email);
-
-  }
 
   public WebElement findElement(By locator){
   return wait.until(ExpectedConditions.elementToBeClickable(locator));
@@ -80,7 +72,7 @@ public String generateEmailTimeStamp(){
   driver.quit();
  }
 
-  @BeforeSuite
+  @BeforeMethod
  public void setUpDriver(){
     WebDriverManager.chromedriver().setup();
 

@@ -11,37 +11,23 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-/*   By accountBtn = By.xpath("//h2[text()='My Account']");
-
-   By loginBtn = By.linkText("Login");
-
-   By accountEnterBtn= By.cssSelector(".fa-user");
-   By submitBtn = By.xpath("//input[@type ='submit']");*/
-
-
     @Test(priority = 1)
     public void loginSuccess() {
-
-
         driver.get(URL);
         LoginPage loginPage = new LoginPage(driver);
-        BasePage basePage = new BasePage(driver);
-        driver.findElement(loginPage.accountEnterBtn).click();
-        WebElement login =basePage.waitUntilClickable(loginPage.loginBtn);
-        login.click();
-        basePage.enterEmail(email);
-        basePage.enterPassword(password);
-        driver.findElement(loginPage.submitBtn).click();
-        WebElement account = basePage.waitUntilVisible(loginPage.accountBtn);
-        Assert.assertTrue((account.isDisplayed()));
-        tearDown();
+        loginPage.openLoginPage();
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(password);
+        Assert.assertTrue((loginPage.accountCreated().isDisplayed()));
+
 
     }
     @Test
     public  void test(){
         BasePage basePage = new BasePage(driver);
-
-        System.out.println(basePage.generateEmailTimeStamp());
+        LoginPage loginPage =new LoginPage(driver);
+        System.out.println(loginPage.generateLogin());
+          System.out.println(basePage.generateLogin());
     }
 
 

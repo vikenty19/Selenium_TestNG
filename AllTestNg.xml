@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/Calendars.java">
+        <classes>
+            <class name="tutorial.tests.Calendars">
+                <methods>
+                    <include name="calendar1"/>
+                    <include name="calendarUpAndDown"/>
+                    <include name="calendarWithTime"/>
+                    <include name="DropDownCalendar"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/DataProvider1.java">
+        <classes>
+            <class name="tutorial.tests.DataProvider1">
+                <methods>
+                    <include name="loginDDTest"/>
+                    <include name="loginDDTest1"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/JavaScriptExecCalendar.java">
+        <classes>
+            <class name="tutorial.tests.JavaScriptExecCalendar">
+                <methods>
+                    <include name="javaScriptInsertData"/>
+                    <include name="javaScriptEnterText"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/LoginTest.java">
+        <classes>
+            <class name="tutorial.tests.LoginTest">
+                <methods>
+                    <include name="loginSuccess"/>
+                    <include name="test"/>
+                    <include name="loginNegative"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+   <!-- <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/ObjectDataProvider.java">
+        <classes>
+            <class name="tutorial.tests.ObjectDataProvider">
+                <methods>
+                    <include name="test"/>
+                </methods>
+            </class>
+        </classes>
+    </test>-->
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/ReadingExcel.java">
+        <classes/>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/ScreenShots.java">
+        <classes>
+            <class name="tutorial.tests.ScreenShots">
+                <methods>
+                    <include name="getScreenShot"/>
+                    <include name="webElementScreenShot"/>
+                    <include name="fullScreenShot"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true"
+          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/TableHandlePaginator.java">
+        <classes>
+            <class name="tutorial.tests.TableHandlePaginator">
+                <methods>
+                    <include name="printTableWithTitle"/>
+                    <include name="handleDynamicTable"/>
+                </methods>
+            </class>
+        </classes>
+
+    </test>
+
+</suite>

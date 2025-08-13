@@ -25,6 +25,7 @@ public class BaseTest {
         manager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        driver.manage().window().maximize();
     }
     @AfterMethod
     public void tearDown(){

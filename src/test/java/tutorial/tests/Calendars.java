@@ -14,25 +14,24 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.util.Locale;
 
-public class Calendars extends BasePage {
-    public Calendars(WebDriver givenDriver) {
-        super(givenDriver);
-    }
+public class Calendars extends BaseTest {
+
 
     @Test
     public void calendar1() throws InterruptedException {
+        BasePage basePage = new BasePage(driver);
         driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");
-        WebElement dataField =waitUntilClickable(By.cssSelector("input#datepicker"));
+        WebElement dataField =basePage.waitUntilClickable(By.cssSelector("input#datepicker"));
         dataField.click();
         //wait for calendar appearance
-        waitUntilVisible(By.id("ui-datepicker-div"));
+        basePage.waitUntilVisible(By.id("ui-datepicker-div"));
         //using created method
         selectDate("2023", "March", "32");
          selectDate("2023", "December", "32");
         selectDate("2024", "February", "29");//not solving problem with several query
          dataField.click();
          dataField.clear();
-        waitUntilVisible(By.id("ui-datepicker-div"));
+       basePage.waitUntilVisible(By.id("ui-datepicker-div"));
 
         selectDate("2023", "July", "31");
         dataField.click();
@@ -68,10 +67,10 @@ public class Calendars extends BasePage {
 
     //create universal method
     public void selectDate(String yearPick, String monthPick, String datePick) {
-
-        String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
-        String month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-        String year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+        BasePage basePage = new BasePage(driver);
+        String monthYear = basePage.waitUntilVisible(By.className("ui-datepicker-title")).getText();
+        String month =basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+        String year = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
         String[] oddMonth = {"January", "March", "May", "July", "August", "October", "December"};
         String[] evenMonth = {"April", "June", "September", "November"};
         while (!(month.equals(monthPick) && year.equals(yearPick))) {
@@ -92,16 +91,16 @@ public class Calendars extends BasePage {
                 return;
             }
 
-            WebElement previous = waitUntilVisible(By.cssSelector(".ui-icon-circle-triangle-w"));
+            WebElement previous = basePage.waitUntilVisible(By.cssSelector(".ui-icon-circle-triangle-w"));
             previous.click();
-            month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-            year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+            month = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            year = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
         }
         // while is ended
         String xpathText = "//a[text()=\'" + datePick + "\']";//a[text() ='30']
 
         try {
-            findElement(By.xpath(xpathText)).click();
+           basePage.findElement(By.xpath(xpathText)).click();
         } catch (Exception e) {
             System.out.println("Invalid data provided  " + datePick + "/" + monthPick + "/" + yearPick);
         }
@@ -115,14 +114,14 @@ public class Calendars extends BasePage {
         int eDay = eld.getDayOfMonth();
         int eMonth = eld.getMonthValue();
         int eYear = eld.getYear();
-
+        BasePage basePage = new BasePage(driver);
         driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");
-        WebElement dataField =waitUntilClickable(By.cssSelector("input#datepicker"));
+        WebElement dataField =basePage.waitUntilClickable(By.cssSelector("input#datepicker"));
         dataField.click();
         //wait for calendar appearance
-        waitUntilVisible(By.id("ui-datepicker-div"));
-        String aMonthText = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-        String aYearText = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+        basePage.waitUntilVisible(By.id("ui-datepicker-div"));
+        String aMonthText = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+        String aYearText = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
         //convert string "month" format into integer
         Integer actMonth = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH).parse(aMonthText)
                 .get(ChronoField.MONTH_OF_YEAR);
@@ -130,56 +129,58 @@ public class Calendars extends BasePage {
         // go previous month and day
         while(eMonth < actMonth||eYear < actYear){
             driver.findElement(By.xpath("//a[@title='Prev']")).click();
-            aMonthText = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-            aYearText = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+            aMonthText = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            aYearText = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
             actMonth = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH).parse(aMonthText)
                     .get(ChronoField.MONTH_OF_YEAR);
             actYear=Integer.parseInt(aYearText);
         }
         while(eMonth > actMonth||eYear > actYear){
             driver.findElement(By.xpath("//a[@title='Next']")).click();
-            aMonthText = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-            aYearText = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+            aMonthText = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            aYearText = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
             actMonth = DateTimeFormatter.ofPattern("MMMM").withLocale(Locale.ENGLISH).parse(aMonthText)
                     .get(ChronoField.MONTH_OF_YEAR);
             actYear=Integer.parseInt(aYearText);
         }
 //     //Picking a day
         String xpath = " //table[@class ='ui-datepicker-calendar']//td[@data-handler ='selectDay']/a[text()=\'"+eDay+"\']";
-            findElement(By.xpath(xpath)).click();
+            basePage.findElement(By.xpath(xpath)).click();
             tearDown();
     }
 
     @Test
     public void calendarWithTime(){
+        BasePage basePage = new BasePage(driver);
         driver.get("http://demo.guru99.com/test");
-        findElement(By.cssSelector("input[name='bdaytime']")).sendKeys("03051968");
-        findElement(By.cssSelector("input[name='bdaytime']")).sendKeys(Keys.TAB);
-        findElement(By.cssSelector("input[name='bdaytime']")).sendKeys("0930");
-        findElement(By.cssSelector("input[type='submit']")).click();
+        basePage.findElement(By.cssSelector("input[name='bdaytime']")).sendKeys("03051968");
+        basePage.findElement(By.cssSelector("input[name='bdaytime']")).sendKeys(Keys.TAB);
+        basePage.findElement(By.cssSelector("input[name='bdaytime']")).sendKeys("0930");
+        basePage.findElement(By.cssSelector("input[type='submit']")).click();
 
 
     }
 
     @Test(dataProvider = "calendar data")
     public void DropDownCalendar(String Day,String Month,String Year){
-
+        BasePage basePage =new BasePage(driver);
         driver.get("https://www.hyrtutorials.com/p/calendar-practice.html");
-        findElement(By.cssSelector("#third_date_picker")).click();
+        basePage.findElement(By.cssSelector("#third_date_picker")).click();
        selectDataInCalendar(Day,Month,Year);
        tearDown();
     }
 
     private void selectDataInCalendar(String selDay,String selMonth,String selYear) {
-        WebElement month = waitUntilClickable(By.cssSelector("[data-handler='selectMonth']"));
+        BasePage basePage = new BasePage(driver);
+        WebElement month =    basePage.waitUntilClickable(By.cssSelector("[data-handler='selectMonth']"));
         Select select = new Select(month);
         select.selectByVisibleText(selMonth);
-        WebElement year = waitUntilClickable(By.cssSelector("[data-handler='selectYear']"));
+        WebElement year =    basePage.waitUntilClickable(By.cssSelector("[data-handler='selectYear']"));
         Select selectYear = new Select(year);
         selectYear.selectByVisibleText(selYear);
         String eDay = selDay;
         String xpath = ("//table[@class= 'ui-datepicker-calendar']//td[@data-handler='selectDay']/a[text() =\'"+eDay+"\']");
-        findElement(By.xpath(xpath)).click();
+        basePage.findElement(By.xpath(xpath)).click();
     }
     @DataProvider(name = "calendar data")
     public Object[][] getData(){
