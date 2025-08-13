@@ -9,10 +9,14 @@ public class ObjectDataProvider {
     @Test(dataProvider = "HashMap")
     public void test(Object[] map) {
   //jagged array - different size of every object
-  //    System.out.println(Arrays.toString(map));
+      //System.out.println(Arrays.toString(map));
         //another way
-        for (int i = 0; i < map.length ; i++) {
+      /*  for (int i = 0; i < map.length ; i++) {
             System.out.print (map[i]+"  ");
+
+        }*/
+        for (Object temp:map) {
+            System.out.println(temp.toString());
 
         }
         System.out.println();
@@ -30,5 +34,6 @@ public class ObjectDataProvider {
         return data.iterator();
 
     }
+
 }
 
