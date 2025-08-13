@@ -53,6 +53,18 @@ public void checkLoginWithDataProvider(String email,String password){
      Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
    // Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
 
-}
+}           //another way using array as an argument
+    @Test(dataProvider = "credentialsArraySupplier",dataProviderClass = DataProviderExamples.class)
+    public void checkLoginWithDataProviderArray(String[]str){
 
+        LoginPage loginPage = new LoginPage(driver);
+        driver.get(URL);
+        loginPage.openLoginPage();
+        loginPage.enterEmail(str[0]);
+        loginPage.enterPassword(str[1]);
+        loginPage.clickSubmitBtn();
+        Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
+        // Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
+
+    }
 }

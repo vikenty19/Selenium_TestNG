@@ -14,8 +14,8 @@ public class DataProviderExamples {
 
     @DataProvider(name = "LoginDataSupplier")
     public Object[][] credentialsSupplier(){
-          String password = "12345";
-          Object[][] dataObject = new Object[20][2];
+         String password = "12345";
+          Object[][] dataObject = new Object[25][2];
         for(int i = 0; i<20; i++){
             Faker faker = new Faker();
             String loginNegative = faker.animal().name();
@@ -23,11 +23,17 @@ public class DataProviderExamples {
             dataObject[i][0] = invalidEmail;
             dataObject[i][1]=password;
         }
-       /* Object[][] data = {{"amotooricap@gmail.com","12345"},
-                {"amotooricap8@gmail.com","12345"},
-                {"amotooricap6@gmail.com","12345"}};
-        return data;*/
+
         return dataObject;
+    }
+    @DataProvider
+    public Object[][] credentialsArraySupplier(){
+
+        Object[][] data = {{"amotooric12@gmail.com","12345"},
+                {"amotoicap8@gmail.com","12345"},
+                {"amotooooricap61@gmail.com","12345"}};
+        return data;
+
     }
 
     @DataProvider
