@@ -27,7 +27,7 @@ public class BasePage {
     public BasePage(WebDriver givenDriver){
         this.driver = givenDriver;
         wait = new WebDriverWait(driver,Duration.ofSeconds(10));
-        manager.chromedriver().setup();
+    //    manager.chromedriver().setup();
         action = new Actions(givenDriver);
         PageFactory.initElements(driver,this);
 
@@ -68,13 +68,10 @@ public String generateEmailTimeStamp(){
   driver.quit();
  }
 
-  @BeforeMethod
- public void setUpDriver(){
-    WebDriverManager.chromedriver().setup();
 
-  }
   @BeforeMethod
   public void setUpBrowser(){
+    manager.chromedriver().setup();
     driver = new ChromeDriver();
     driver.manage().window().maximize();
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));

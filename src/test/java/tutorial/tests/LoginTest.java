@@ -1,17 +1,13 @@
 package tutorial.tests;
-
 import com.tutorial.BasePage;
 import com.tutorial.LoginPage;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
     @Test(priority = 1)
-    public void loginSuccess() throws InterruptedException {
+    public void loginSuccess() {
         driver.get(URL);
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openLoginPage();

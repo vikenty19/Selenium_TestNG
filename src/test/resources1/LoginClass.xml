@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><suite name="All Test Suite">
+    <test verbose="2" preserve-order="true" name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/LoginTest.java">
+        <classes>
+            <class name="tutorial.tests.LoginTest">
+                <methods>
+                    <include name="loginSuccess"/>
+                 <!--   <include name="test"/>-->
+                    <include name="loginInvalidEmail"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
