@@ -17,6 +17,8 @@ public class LoginPage extends BasePage {
     public By submitBtn = By.xpath("//input[@type ='submit']");
     public By passwordBtn = By.cssSelector("#input-password");
      public By emailBtn =By.cssSelector("#input-email");
+     @FindBy(css = ".alert")
+     public WebElement alertWarning;
 
     public LoginPage(WebDriver givenDriver) {
         super(givenDriver);
@@ -39,6 +41,7 @@ public class LoginPage extends BasePage {
                 .visibilityOfElementLocated(By.cssSelector(".alert")));
         return alert;
     }
+
     public void enterPassword(String passWord) {
         driver.findElement(passwordBtn).clear();
         driver.findElement(passwordBtn).sendKeys(passWord);

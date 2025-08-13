@@ -40,7 +40,8 @@ public class LoginTest extends BaseTest {
         loginPage.enterEmail(invalidEmail);
         loginPage.enterPassword(passwordTutorial);
         loginPage.clickSubmitBtn();
-        Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
+       // Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
+        Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
   }
 
 }
