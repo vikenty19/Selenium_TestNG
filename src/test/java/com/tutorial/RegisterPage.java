@@ -3,6 +3,7 @@ package com.tutorial;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.testng.Assert;
 
 public class RegisterPage extends BasePage{
     public RegisterPage(WebDriver givenDriver) {
@@ -18,6 +19,7 @@ public class RegisterPage extends BasePage{
    By passConfirm = By.cssSelector("#input-confirm");
    By policyLocator = By.cssSelector("[name = 'agree']");
    By submitLocator = By.cssSelector("input[type = 'submit']");
+   By successLocator=  By.xpath("//h1[text() ='Your Account Has Been Created!']");
 
     public void openAccountRegisterPage() {
        LoginPage loginPage = new LoginPage(driver);
@@ -53,5 +55,9 @@ public class RegisterPage extends BasePage{
         BasePage basePage = new BasePage(driver);
         basePage.waitUntilVisible(submitLocator).click();
     }
-
+   public WebElement accountCreated(){
+        BasePage basePage = new BasePage(driver);
+       WebElement success = basePage.waitUntilVisible(successLocator);
+       return success;
+   }
 }

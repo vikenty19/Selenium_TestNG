@@ -1,5 +1,6 @@
 package tutorial.tests;
 
+import com.beust.ah.A;
 import com.tutorial.BasePage;
 import com.tutorial.DataProviderExamples;
 import com.tutorial.LoginPage;
@@ -11,7 +12,18 @@ import org.testng.annotations.Test;
 
 public class AccountRegistration extends BaseTest {
     @Test(dataProvider = "Register new customer", dataProviderClass = DataProviderExamples.class)
-    public void negativeWithSomeEmptyFields(Object[] data) {
+    public void loginSuccess(Object[] data) {
+        driver.get(URL);
+        RegisterPage registerPage = new RegisterPage(driver);
+        registerPage.openAccountRegisterPage();
+        registerPage.enterCredentials(data);
+        registerPage.createPasswordAndConfirm(data);
+        registerPage.agreeWithPolicy();
+        registerPage.clickSubmitBtn();
+        Assert.assertTrue(registerPage.accountCreated().isDisplayed());
+            }
+    @Test(dataProvider ="credentialsWithEmptyField",dataProviderClass = DataProviderExamples.class)
+    public void negativeWithSomeEmptyFields(Object[]data){
         driver.get(URL);
         BasePage basePage = new BasePage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
@@ -20,7 +32,7 @@ public class AccountRegistration extends BaseTest {
         registerPage.createPasswordAndConfirm(data);
         registerPage.agreeWithPolicy();
         registerPage.clickSubmitBtn();
-        WebElement success = basePage.waitUntilVisible(By.xpath("//h1[text() ='Your Account Has Been Created!']"));
-        Assert.assertTrue(success.isDisplayed());
+        WebElement alert = basePage.waitUntilVisible(By.cssSelector(".alert"));
+        Assert.assertTrue(alert.getText().contains("Warning"));
     }
 }

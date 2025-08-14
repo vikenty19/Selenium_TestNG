@@ -65,23 +65,37 @@ public class DataProviderExamples {
         return data1;
 
     }
-    @DataProvider(name= "ListOfObjects[]")
-    public Iterator<Object[]> iteratorData(){
-        List<Object[]> list=new ArrayList<>();
+
+    @DataProvider(name = "ListOfObjects[]")
+    public Iterator<Object[]> iteratorData() {
+        List<Object[]> list = new ArrayList<>();
 
         list.add(new Object[]{"vv@mail.ru", "megadelta"});
         list.add(new Object[]{"amotooricap3@gmail.com", "12345"});
         list.add(new Object[]{"amotooricap7@gmail.com", "12345"});
         return list.iterator();
     }
+
     @DataProvider(name = "Register new customer")
-    public Object[][] registerData(){
+    public Object[] registerData() {
+        int count = 4;
+        Object[] data = new Object[4];
         Faker faker = new Faker();
-        String firstName =faker.name().firstName();
-        Date date =new Date();
-        String email = date.toString().replace(" ","_").replace(":","_")+"@gmail.com";
-        Object[][]data = {{firstName,"Petrov",email,"23475681","vostok19"}};
+        Date date = new Date();
+        for (int i = 0; i <count; i++) {
+            String J = Integer.toString(i);
+            String firstName = faker.name().firstName();
+            String email = J + date.toString().replace(" ", "_").replace(":", "_") + "@gmail.com";
+            data[i] = new Object[]{firstName, "Petrov", email, "23475681", "vostok19"};
+        }
         return data;
 
     }
+    @DataProvider(name = "credentialsWithEmptyField")
+    public Object[][] credentialsWithEmptyField(){
+         Object[][] data = {{"Vas","Petrov","","12345",""},
+                 {"","","vvvvvvvvv@mu.io","134","password"}};
+                 return data;
+    }
+
 }
