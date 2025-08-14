@@ -15,6 +15,7 @@ public class RegisterPage extends BasePage{
    By emailLocator = By.cssSelector("#input-email");
    By phoneLocator =By.cssSelector("#input-telephone");
    By passLocator = By.cssSelector("#input-password");
+   By passConfirm = By.cssSelector("#input-confirm");
    By policyLocator = By.cssSelector("[name = 'agree']");
    By submitLocator = By.cssSelector("input[type = 'submit']");
 
@@ -32,10 +33,25 @@ public class RegisterPage extends BasePage{
         lName.sendKeys((String)credentials[1]);
         WebElement email = basePage.waitUntilVisible(emailLocator);
         email.sendKeys((String)credentials[2]);
-        WebElement phone = basePage.waitUntilVisible(By.cssSelector("#input-telephone"));
+        WebElement phone = basePage.waitUntilVisible(phoneLocator);
         phone.sendKeys((String)credentials[3]);
 
     }
-
+    public void createPasswordAndConfirm(Object[]credentials){
+        BasePage basePage = new BasePage(driver);
+        WebElement pass = basePage.waitUntilVisible(passLocator);
+        pass.sendKeys((String)credentials[4]);
+        WebElement passConfirmation = basePage.waitUntilVisible(passConfirm);
+        passConfirmation.sendKeys((String)credentials[4]);
+    }
+    public void agreeWithPolicy(){
+        BasePage basePage = new BasePage(driver);
+        WebElement policy = basePage.waitUntilVisible(policyLocator);
+        policy.click();
+    }
+    public void clickSubmitBtn(){
+        BasePage basePage = new BasePage(driver);
+        basePage.waitUntilVisible(submitLocator).click();
+    }
 
 }

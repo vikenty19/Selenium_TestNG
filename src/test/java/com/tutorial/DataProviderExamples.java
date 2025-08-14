@@ -76,7 +76,11 @@ public class DataProviderExamples {
     }
     @DataProvider(name = "Register new customer")
     public Object[][] registerData(){
-        Object[][]data = {{"Vasya1","Petrov1","vv1111@mail.ru","23475681"}};
+        Faker faker = new Faker();
+        String firstName =faker.name().firstName();
+        Date date =new Date();
+        String email = date.toString().replace(" ","_").replace(":","_")+"@gmail.com";
+        Object[][]data = {{firstName,"Petrov",email,"23475681","vostok19"}};
         return data;
 
     }
