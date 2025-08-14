@@ -1,28 +1,25 @@
 package com.tutorial;
 
 import com.github.javafaker.Faker;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.DataProvider;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class DataProviderExamples {
 
 
-    @DataProvider(name = "LoginDataSupplier")
-    public Object[][] credentialsSupplier(){
+    @DataProvider(name = "LoginValidEmailSupplier")
+    public Object[][] validEmailsSupplier(){
          String password = "12345";
-          Object[][] dataObject = new Object[25][2];
+         int count = 20;
+          Object[][] dataObject = new Object[count+1][2];
         for(int i = 0; i<20; i++){
             Faker faker = new Faker();
-            String loginNegative = faker.animal().name();
+            String loginNegative = faker.color().name();
             String invalidEmail =loginNegative+"@gmail.com";
             dataObject[i][0] = invalidEmail;
             dataObject[i][1]=password;
-        }
+        }//empty email added
+        dataObject[count][0]="";
+        dataObject[count][1]=password;
 
         return dataObject;
     }

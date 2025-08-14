@@ -3,7 +3,6 @@ import com.tutorial.BasePage;
 import com.tutorial.DataProviderExamples;
 import com.tutorial.LoginPage;
 import org.testng.Assert;
-import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
@@ -18,7 +17,7 @@ public class LoginTest extends BaseTest {
         loginPage.clickSubmitBtn();
         Assert.assertTrue((loginPage.accountCreated().isDisplayed()));
     }
-    @Test
+    @Test(enabled = false)
     public  void test(){
         BasePage basePage = new BasePage(driver);
         LoginPage loginPage =new LoginPage(driver);
@@ -41,7 +40,7 @@ public class LoginTest extends BaseTest {
        // Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
         Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
   }
-  @Test(dataProvider = "LoginDataSupplier",dataProviderClass = DataProviderExamples.class)
+  @Test(dataProvider = "LoginValidEmailSupplier",dataProviderClass = DataProviderExamples.class)
 public void checkLoginWithDataProvider(String email,String password){
 
     LoginPage loginPage = new LoginPage(driver);

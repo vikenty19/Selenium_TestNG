@@ -3,11 +3,11 @@
     <test verbose="2" preserve-order="true" name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/LoginTest.java">
         <classes>
             <class name="tutorial.tests.LoginTest">
-                <methods>
+             <!--   <methods>
                     <include name="loginSuccess"/>
-                 <!--   <include name="test"/>-->
-                    <include name="loginInvalidEmail"/>
-                </methods>
+                    <include name="test"/
+                    <include name="loginInvalidEmail"/
+                </methods>-->
             </class>
         </classes>
     </test>
