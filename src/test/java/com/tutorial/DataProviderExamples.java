@@ -74,4 +74,10 @@ public class DataProviderExamples {
         list.add(new Object[]{"amotooricap7@gmail.com", "12345"});
         return list.iterator();
     }
+    @DataProvider(name = "Register new customer")
+    public Object[][] registerData(){
+        Object[][]data = {{"Vasya1","Petrov1","vv1111@mail.ru","23475681"}};
+        return data;
+
+    }
 }
