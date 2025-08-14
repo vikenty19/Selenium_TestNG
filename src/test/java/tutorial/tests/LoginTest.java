@@ -66,4 +66,30 @@ public void checkLoginWithDataProvider(String email,String password){
         // Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
 
     }
+    // TimeStampEmail variant when only email is passing
+    @Test(dataProvider = "TimeStampEmail",dataProviderClass = DataProviderExamples.class)
+    public void loginEmailWithTimeGeneratedProvider(String email){
+        String password = "12345";
+        LoginPage loginPage = new LoginPage(driver);
+        driver.get(URL);
+        loginPage.openLoginPage();
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(password);
+        loginPage.clickSubmitBtn();
+        Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
+    }
+    @Test(dataProvider = "ListOfObjects[]",dataProviderClass = DataProviderExamples.class)
+    public void successLoginWithDataListObjectsProvider(String email,String password){
+
+        LoginPage loginPage = new LoginPage(driver);
+        driver.get(URL);
+        loginPage.openLoginPage();
+        loginPage.enterEmail(email);
+        loginPage.enterPassword(password);
+        loginPage.clickSubmitBtn();
+        Assert.assertTrue((loginPage.accountCreated().isDisplayed()));
+
+    }
+
+
 }

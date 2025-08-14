@@ -1,12 +1,13 @@
 import com.github.javafaker.Faker;
 
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Training  {
     public static void main(String[] args) {
-         String password = "12345";
+  /*       String password = "12345";
          int count = 20;//number of row
        Object[][] dataObject = new Object[count+1][2];
         for(int i = 0; i<count; i++){
@@ -19,9 +20,23 @@ public class Training  {
        dataObject[count][0]="";
        dataObject[count][1]=password;
         for (Object[] row:dataObject) {
-            System.out.println(Arrays.toString(row)+"  "+count);
+            System.out.println(Arrays.toString(row));
+        }*/
+
+            Date data =new Date();
+
+            Object[] dataEmail = new Object[10];
+            for (int i=0;i<10;i++){
+                String j = Integer.toString(i);
+                String randomGmail = j+data.toString().replace(" ","_").replace(":","_").substring(8)+"@gmail.com";
+                dataEmail[i]=randomGmail;
+            }
+        for (Object temp:dataEmail) {
+            System.out.println(temp);
+
         }
 
+        }
     }
-}
+
 
