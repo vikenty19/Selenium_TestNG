@@ -23,16 +23,16 @@ public class BaseTest {
     protected String email = "vv@mail.ru";
     protected String password = "megadelta";
     protected String passwordTutorial = "12345";
- //   @BeforeClass //--->  here to run dependsOn method in WishList class
-    @BeforeMethod
+    @BeforeClass //--->  here to run dependsOn method in WishList class
+ //   @BeforeMethod
     public void setUpBrowser(){
         manager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         driver.manage().window().maximize();
     }
-   // @AfterClass//--->  here to run dependsOn method in WishList class
-    @AfterMethod
+    @AfterClass//--->  here to run dependsOn method in WishList class
+  //  @AfterMethod
     public void tearDown(){
         driver.quit();
     }
