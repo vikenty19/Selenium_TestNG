@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
     <test verbose="2" preserve-order="true"
-          name="C:/Users/Acer/Documents/GitHub1/Selenium_TestNg/src/test/java/tutorial/tests/WishListTest.java">
+          name="WishListTest.java">
         <classes>
             <class name="tutorial.tests.WishListTest">
 
