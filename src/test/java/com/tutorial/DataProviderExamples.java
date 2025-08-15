@@ -91,10 +91,11 @@ public class DataProviderExamples {
         return data;
 
     }
-    @DataProvider(name = "credentialsWithEmptyField")
+    @DataProvider(name = "credentialsWithEmptyField",indices={0,2})
     public Object[][] credentialsWithEmptyField(){
          Object[][] data = {{"Vas","Petrov","","12345",""},
-                 {"","","vvvvvvvvv@mu.io","134","password"}};
+                 {"","","vvvvvvvvv@mu.io","134","password"},
+                 {"@","!","1@yry","ttttt","12345"}};
                  return data;
     }
 

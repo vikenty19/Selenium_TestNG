@@ -7,7 +7,7 @@ import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
 
-    @Test(priority = 1)
+    @Test(priority = 1,groups = {"login"})
     public void loginSuccess() {
         driver.get(URL);
         LoginPage loginPage = new LoginPage(driver);
@@ -26,7 +26,7 @@ public class LoginTest extends BaseTest {
     }
 
 
-    @Test(priority = 2)//,invocationCount = 3
+    @Test(priority = 2,groups = {"login"})//,invocationCount = 3
   public void loginInvalidEmail(){
         BasePage basePage = new BasePage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -40,7 +40,8 @@ public class LoginTest extends BaseTest {
        // Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
         Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
   }
-  @Test(dataProvider = "LoginValidEmailSupplier",dataProviderClass = DataProviderExamples.class)
+  @Test(dataProvider = "LoginValidEmailSupplier",dataProviderClass = DataProviderExamples.class,
+  groups = {"login"})
 public void checkLoginWithDataProvider(String email,String password){
 
     LoginPage loginPage = new LoginPage(driver);
@@ -53,7 +54,8 @@ public void checkLoginWithDataProvider(String email,String password){
    // Assert.assertTrue((loginPage.alertWarning.isDisplayed()));//@FindBy
 
 }           //another way using array as an argument
-    @Test(dataProvider = "credentialsArraySupplier",dataProviderClass = DataProviderExamples.class)
+    @Test(dataProvider = "credentialsArraySupplier",dataProviderClass = DataProviderExamples.class,
+    groups = "login")
     public void checkLoginWithDataProviderArray(String[]str){
 
         LoginPage loginPage = new LoginPage(driver);
@@ -67,7 +69,8 @@ public void checkLoginWithDataProvider(String email,String password){
 
     }
     // TimeStampEmail variant when only email is passing
-    @Test(dataProvider = "TimeStampEmail",dataProviderClass = DataProviderExamples.class)
+    @Test(dataProvider = "TimeStampEmail",dataProviderClass = DataProviderExamples.class,
+    groups = {"login"})
     public void loginEmailWithTimeGeneratedProvider(String email){
         String password = "12345";
         LoginPage loginPage = new LoginPage(driver);
@@ -78,7 +81,8 @@ public void checkLoginWithDataProvider(String email,String password){
         loginPage.clickSubmitBtn();
         Assert.assertTrue((loginPage.warningAlert().isDisplayed()));
     }
-    @Test(dataProvider = "ListOfObjects[]",dataProviderClass = DataProviderExamples.class)
+    @Test(dataProvider = "ListOfObjects[]",dataProviderClass = DataProviderExamples.class,
+    groups = {"login"})
     public void successLoginWithDataListObjectsProvider(String email,String password){
 
         LoginPage loginPage = new LoginPage(driver);

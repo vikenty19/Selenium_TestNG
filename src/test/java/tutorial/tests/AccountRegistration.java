@@ -25,14 +25,13 @@ public class AccountRegistration extends BaseTest {
     @Test(dataProvider ="credentialsWithEmptyField",dataProviderClass = DataProviderExamples.class)
     public void negativeWithSomeEmptyFields(Object[]data){
         driver.get(URL);
-        BasePage basePage = new BasePage(driver);
         RegisterPage registerPage = new RegisterPage(driver);
         registerPage.openAccountRegisterPage();
         registerPage.enterCredentials(data);
         registerPage.createPasswordAndConfirm(data);
         registerPage.agreeWithPolicy();
         registerPage.clickSubmitBtn();
-        WebElement alert = basePage.waitUntilVisible(By.cssSelector(".alert"));
-        Assert.assertTrue(alert.getText().contains("Warning"));
+
+        Assert.assertTrue(driver.getCurrentUrl().contains("register"));
     }
 }

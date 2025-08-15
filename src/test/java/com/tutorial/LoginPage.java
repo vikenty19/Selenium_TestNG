@@ -42,9 +42,9 @@ public class LoginPage extends BasePage {
         return alert;
     }
 
-    public void enterPassword(String passWord) {
+    public void enterPassword(String password) {
         driver.findElement(passwordBtn).clear();
-        driver.findElement(passwordBtn).sendKeys(passWord);
+        driver.findElement(passwordBtn).sendKeys(password);
 
     }
     public void enterEmail(String email) {
@@ -55,7 +55,11 @@ public class LoginPage extends BasePage {
     public void clickSubmitBtn(){
         driver.findElement(submitBtn).click();
     }
-
+    public void loginUser(String email,String password){
+        enterEmail(email);
+        enterPassword(password);
+        clickSubmitBtn();
+    }
     public String generateLogin() {
         String login = "1223";
         return login;
