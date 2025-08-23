@@ -23,28 +23,7 @@ public class ReadingExcel {
         XSSFWorkbook workbook = new XSSFWorkbook(fis);//create object of pre-defined class of Apache POI
         //searching for the sheet in Excel workbook
         XSSFSheet sheet = workbook.getSheet("one");//name
-        // using Iterator
-  /*      Iterator<Row> rows = sheet.iterator();
-        while (rows.hasNext()) {
-            Row row = rows.next();
-            Iterator<Cell> cells = row.iterator();
-            while (cells.hasNext()) {
-                Cell cell = cells.next();
-                CellType cellType = cell.getCellType();
-                switch (cellType) {
-                    case STRING:
-                        System.out.print(cell.getStringCellValue() + " | ");//to print as a table
-                        break;
-                    case NUMERIC:
-                        System.out.print((int)cell.getNumericCellValue() + " | ");//int added to get integer
-                        break;
-                    case BOOLEAN:
-                        System.out.print(cell.getBooleanCellValue() + " | ");
-                        break;
-                }
-                System.out.println(" | ");
-            }
-            System.out.println();*/
+
 
         System.out.println(sheet.getLastRowNum());//Return index !! not fact number of row
         int rows = sheet.getPhysicalNumberOfRows();//physical number of rows

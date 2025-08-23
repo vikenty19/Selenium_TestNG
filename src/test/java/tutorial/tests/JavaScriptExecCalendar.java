@@ -10,17 +10,18 @@ public class JavaScriptExecCalendar extends BaseTest {
 
 
     @Test
-            public void javaScriptInsertData() {
+    public void javaScriptInsertData() {
         driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");
 
-        JavascriptExecutor jse = ((JavascriptExecutor)driver);
+        JavascriptExecutor jse = ((JavascriptExecutor) driver);
         jse.executeScript("document.getElementById('datepicker').value = '03/05/1968'");
 
     }
+
     @Test
     public void javaScriptEnterText() throws InterruptedException {
         driver.get(url);
-        ((JavascriptExecutor)driver).executeScript("document.getElementById('ta1').value = 'Only Chat GPT Knows'");
+        ((JavascriptExecutor) driver).executeScript("document.getElementById('ta1').value = 'Only Chat GPT Knows'");
         Thread.sleep((2000));
     }
 }
