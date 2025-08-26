@@ -63,7 +63,7 @@ public String generateEmailTimeStamp(){
   return wait.until(ExpectedConditions.elementToBeClickable(locator));
 
   }
- @AfterMethod(enabled = true)
+/* @AfterMethod(enabled = true)
   public void tearDown(){
   driver.quit();
  }
@@ -75,6 +75,6 @@ public String generateEmailTimeStamp(){
     driver = new ChromeDriver();
     driver.manage().window().maximize();
     wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-  }
+  }*/
 
 }
