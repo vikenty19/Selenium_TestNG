@@ -11,6 +11,18 @@ import java.io.IOException;
 
 public class JavaScriptExecutor extends BaseTest {
     @Test
+    public void javaScriptScrolling() throws InterruptedException {
+        driver.get(url);
+        JavascriptExecutor jse = ((JavascriptExecutor) driver);
+         WebElement buttonToScrollTo= driver.findElement(By.cssSelector("form [value='LogIn']"));
+         jse.executeScript("arguments[0].scrollIntoView(true)",buttonToScrollTo);
+         Thread.sleep(2000);
+         // scrolling to the bottom of the page
+        jse.executeScript("window.scrollTo(0,document.body.scrollHeight)");
+        Thread.sleep(2000);
+
+    }
+    @Test
     public void javaScriptGetTitle(){
         JavascriptExecutor jse = ((JavascriptExecutor) driver);
         driver.get(koelUrl);
@@ -24,12 +36,30 @@ public class JavaScriptExecutor extends BaseTest {
         driver.get(koelUrl);
         WebElement email = driver.findElement(By.cssSelector("form>[type='email']"));
         javaScriptEnterText(driver,email,"Viktoria@rr.dd");
+        Thread.sleep(1000);
         WebElement password = driver.findElement(By.cssSelector("form>[type='password']"));
         javaScriptEnterText(driver,password,"12345678");
+        Thread.sleep(1000);
         WebElement submit = driver.findElement(By.cssSelector("button[type='submit']"));
         javaClick(submit,driver);
         Thread.sleep(2000);
 
+    }
+    @Test
+    public void javaScriptDataPickAlertAndRefresh() throws InterruptedException {
+        driver.get("http://seleniumpractise.blogspot.com/2016/08/how-to-handle-calendar-in-selenium.html");
+        JavascriptExecutor jse = ((JavascriptExecutor)driver);
+        WebElement dataField = driver.findElement(By.id("datepicker"));
+        String dateToEnter = "08/26/2025";
+        jse.executeScript("arguments[0].value = '"+dateToEnter+"'",dataField);
+
+        //creating alert informing about successfully entered date
+        jse.executeScript("alert('Date has been entered successfully')");
+        Thread.sleep(2000);
+        driver.switchTo().alert().accept();// close alert
+        //refresh
+        jse.executeScript("history.go(0)");
+        Thread.sleep(2000);
     }
     public void javaScriptEnterText(WebDriver driver,WebElement element,String text){
         JavascriptExecutor jse = ((JavascriptExecutor) driver);
