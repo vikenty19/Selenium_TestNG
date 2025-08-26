@@ -31,7 +31,7 @@ public class MultiWindowHandling extends BaseTest {
         System.out.println(popUpWindow);
 
          switchToWindow("Blogger.com - Create a unique and beautiful blog easily.");
-         Thread.sleep(1000);
+
       WebElement text2 = basePage.waitUntilVisible(By.cssSelector(".logo-type"));
         System.out.println(text2.isDisplayed());
          WebElement signIn = basePage.waitUntilClickable(By.cssSelector(".sign-in"));
