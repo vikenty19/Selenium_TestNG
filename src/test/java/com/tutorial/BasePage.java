@@ -11,6 +11,7 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.*;
 
@@ -63,18 +64,35 @@ public String generateEmailTimeStamp(){
   return wait.until(ExpectedConditions.elementToBeClickable(locator));
 
   }
-/* @AfterMethod(enabled = true)
-  public void tearDown(){
-  driver.quit();
- }
-
-
-  @BeforeMethod
-  public void setUpBrowser(){
-    manager.chromedriver().setup();
-    driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-  }*/
+    public void selectOptionByText(String text,By locator){
+        BasePage basePage = new BasePage(driver);
+        Select select= new Select(basePage.waitUntilVisible(locator));
+        select.selectByVisibleText(text);
+    }
+    public void selectOptionByIndex(String i,By locator) {
+        BasePage basePage = new BasePage(driver);
+        Select select = new Select(basePage.waitUntilVisible(locator));
+        select.selectByIndex(Integer.parseInt(i));
+    }
+    public void selectOptionByValue(String value,By locator) {
+        BasePage basePage = new BasePage(driver);
+        Select select = new Select(basePage.waitUntilVisible(locator));
+        select.selectByValue(value);
+    }
+    public void selectOptionToPick(By locator,String option,String value){
+        BasePage basePage = new BasePage(driver);
+        Select select = new Select(basePage.waitUntilVisible(locator));
+        switch (option){
+            case "text":
+                select.selectByVisibleText(value);
+                break;
+            case "index":
+                select.selectByIndex(Integer.parseInt(value));
+                break;
+            case  "value":
+                select.selectByValue(value);
+                break;
+        }
+    }
 
 }
