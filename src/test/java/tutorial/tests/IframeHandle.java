@@ -45,7 +45,7 @@ public class IframeHandle extends BaseTest{
                 break;
 
             }
-            driver.switchTo().parentFrame();
+            driver.switchTo().defaultContent();//possible driver.switchTo().parentFrame
         }
         driver.switchTo().frame(index);
         driver.findElement(By.linkText("Description")).click();
