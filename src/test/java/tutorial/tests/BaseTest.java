@@ -20,6 +20,7 @@ public class BaseTest {
     String URL = "http://tutorialsninja.com/demo/";
     String url ="https://omayo.blogspot.com/";
     public static String koelUrl = "https://qa.koel.app/";
+    String frame= "https://docs.oracle.com/javase/8/docs/api/";
     protected String email = "vv@mail.ru";
     protected String password = "megadelta";
     protected String passwordTutorial = "12345";
