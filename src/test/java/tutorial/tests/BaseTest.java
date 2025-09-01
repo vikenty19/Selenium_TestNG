@@ -1,5 +1,6 @@
 package tutorial.tests;
 
+import com.tutorial.ActionPage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -30,6 +31,7 @@ public class BaseTest {
         manager.chromedriver().setup();
         driver = new ChromeDriver();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        action= new Actions(driver);
         driver.manage().window().maximize();
     }
    // @AfterClass//--->  here to run dependsOn method in WishList class
