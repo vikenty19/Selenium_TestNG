@@ -26,7 +26,7 @@ public class Calendars extends BaseTest {
         //wait for calendar appearance
         basePage.waitUntilVisible(By.id("ui-datepicker-div"));
         //using created method
-        selectDate("2023", "March", "32");
+     /*   selectDate("2023", "March", "32");
          selectDate("2023", "December", "32");
         selectDate("2024", "February", "29");//not solving problem with several query
          dataField.click();
@@ -37,31 +37,31 @@ public class Calendars extends BaseTest {
         dataField.click();
         dataField.clear();
         selectDate("2023", "January", "1");
-        System.out.println("Huray!!");
+        System.out.println("Huray!!");*/
 
         ;
-        driver.navigate().refresh();
+       // driver.navigate().refresh();
 
         //check the month and the year
-   /*     String monthYear = waitUntilVisible(By.className("ui-datepicker-title")).getText();
+       String monthYear = basePage.waitUntilVisible(By.className("ui-datepicker-title")).getText();
         System.out.println(monthYear);
-        String month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-        String year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+        String month =basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+        String year = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
       ;
-        //another way to get month and year
+    /*    //another way to get month and year
         String[]my = monthYear.split(" ");
         String month1 = my[0];
         String year1  = my[1];
         */
 
         // pick the date previous
-    /*    while(!(month.equals("January")&& year.equals("2022"))){
-            findElement(By.cssSelector(".ui-icon-circle-triangle-w")).click();
-            month = waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
-            year = waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
+        while(!(month.equals("January")&& year.equals("2022"))){
+            driver.findElement(By.cssSelector(".ui-icon-circle-triangle-w")).click();
+            month =basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-month")).getText();
+            year = basePage.waitUntilVisible(By.cssSelector(".ui-datepicker-year")).getText();
         }
         System.out.println(month+ "   "+year);
-        findElement(By.xpath("//a[contains(text(),'27')]")).click();*/
+        driver.findElement(By.xpath("//a[contains(text(),'27')]")).click();
         tearDown();
     }
 
