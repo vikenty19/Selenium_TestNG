@@ -76,7 +76,8 @@ public class Calendars extends BaseTest {
         WebElement yearInput = basePage.waitUntilVisible(By.className("cur-year"));
         String year = yearInput.getAttribute("value");
         System.out.println(month+"   "+year);
-        while (!(month.equals("January")&&year.equals("2026"))){
+        // entered today's date
+        while (!(month.equals("September")&&year.equals("2025"))){
             basePage.waitUntilClickable(By.cssSelector(".flatpickr-next-month>svg"));
             driver.findElement(By.cssSelector(".flatpickr-next-month>svg")).click();
             Thread.sleep(1000);
@@ -87,7 +88,7 @@ public class Calendars extends BaseTest {
 
         }
         System.out.println(month+"   "+year);
-        driver.findElement(By.xpath("//span[@class = 'flatpickr-day '][text()='9']")).click();
+        driver.findElement(By.xpath("//span[@class = 'flatpickr-day 'or @class ='flatpickr-day today'][text()='2']")).click();
         Thread.sleep(2000);
 
     }
